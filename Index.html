@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thebreadoflife.info | Discover Jesus Christ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .accordion-content { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); max-height: 0; opacity: 0; overflow: hidden; }
+        .accordion-item.active .accordion-content { max-height: 2000px; opacity: 1; padding-bottom: 2.5rem; }
+        .accordion-item.active .chevron { transform: rotate(180deg); color: #f59e0b; }
+        .bg-grain { background-color: #ffffff; background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png"); }
+
+        /* 3D Flip Card Logic */
+        .flip-card { perspective: 1000px; min-height: 280px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .flip-card-back { transform: rotateY(180deg); }
+
+        /* FAQ Specific Flip Sizing */
+        .faq-flip-container { height: 160px; }
+
+        /* Special Flip for Quote Section */
+        .quote-flip { height: 200px; }
+
+        /* Modal Logic */
+        #prayerModal, #infoModal { display: none; }
+        #prayerModal.active, #infoModal.active { display: flex; }
+
+        /* Resource Card Hover */
+        .resource-card:hover .resource-icon { transform: scale(1.1); background-color: #f59e0b; color: white; }
+    </style>
+</head>
+<body class="bg-white text-slate-800">
+
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i data-lucide="wheat" class="text-amber-600"></i>
+                <span class="font-extrabold text-xl tracking-tighter text-slate-900">thebreadoflife<span class="text-amber-600">.info</span></span>
+            </div>
+            <button onclick="toggleModal('prayerModal')" class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-amber-600 transition">Prayer Request</button>
+        </div>
+    </nav>
+
+    <div id="infoModal" class="fixed inset-0 z-[70] items-center justify-center p-6 bg-slate-900/60 backdrop-blur-md">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative p-8 md:p-10">
+            <button onclick="toggleModal('infoModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900">
+                <i data-lucide="x"></i>
+            </button>
+            <div id="infoModalIcon" class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mb-6"></div>
+            <h2 id="infoModalTitle" class="text-2xl font-extrabold text-slate-900 mb-4"></h2>
+            <p id="infoModalText" class="text-slate-600 leading-relaxed text-lg"></p>
+        </div>
+    </div>
+
+    <div id="prayerModal" class="fixed inset-0 z-[60] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden relative">
+            <button onclick="toggleModal('prayerModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-extrabold text-slate-900 mb-2">How can we pray?</h2>
+                <p class="text-slate-500 mb-8 font-medium">Leave your request below and we will join you in prayer.</p>
+                
+                <form class="space-y-4" onsubmit="event.preventDefault(); alert('Request sent!'); toggleModal('prayerModal');">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">First Name</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 focus:border-amber-500 outline-none transition" placeholder="John">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Last Name</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 focus:border-amber-500 outline-none transition" placeholder="Doe">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Email Address</label>
+                        <input type="email" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 focus:border-amber-500 outline-none transition" placeholder="john@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Your Prayer Request</label>
+                        <textarea required rows="4" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 focus:border-amber-500 outline-none transition resize-none" placeholder="Tell us how we can pray for you..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-amber-600 text-white font-bold py-4 rounded-xl hover:bg-slate-900 transition shadow-lg shadow-amber-600/20">Send Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section class="relative min-h-screen flex items-center justify-center bg-grain pt-16 px-6 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 -left-20 w-96 h-96 bg-amber-100 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
+            <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-60"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-5xl w-full text-center">
+            <span class="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-widest uppercase bg-amber-50 text-amber-700 rounded-full border border-amber-100">Eternal Life</span>
+            <h1 class="text-5xl md:text-8xl font-extrabold text-slate-900 tracking-tight mb-8">
+                Why you need <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-500">Jesus Christ</span>
+            </h1>
+            
+            <div class="grid md:grid-cols-2 gap-8 text-left mt-12">
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border border-slate-100 shadow-sm">
+                            <div class="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center mb-6">
+                                <i data-lucide="alert-circle" class="text-slate-600"></i>
+                            </div>
+                            <h3 class="font-bold text-xl mb-3 text-slate-900">The Separation</h3>
+                            <p class="text-slate-600 leading-relaxed">We all have sinned, and the consequences of sin is death tormented in the lake of fire for eternity. This creates a very serious problem for us which only God can solve.</p>
+                        </div>
+                        <div class="flip-card-back bg-slate-900 text-white shadow-xl">
+                            <h3 class="font-bold text-xl mb-3 text-amber-500">The Reality</h3>
+                            <p class="leading-relaxed">We are all natural sinners, and the consequences of sin is death. This creates a gap only God can bridge.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front bg-white border border-slate-100 shadow-sm">
+                            <div class="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center mb-6">
+                                <i data-lucide="gift" class="text-amber-600"></i>
+                            </div>
+                            <h3 class="font-bold text-xl mb-3 text-slate-900">The Provision</h3>
+                            <p class="text-slate-600 leading-relaxed">The gift of God is eternal life through Jesus Christ who paid the price of our sins to reconnect us with God. A Relationship with Jesus transforms your life through the Holy Spirit.</p>
+                        </div>
+                        <div class="flip-card-back bg-amber-600 text-white shadow-xl">
+                            <h3 class="font-bold text-xl mb-3 text-white">The Gift</h3>
+                            <p class="leading-relaxed">The gift of God is eternal life through Jesus who reconnects us with God. A Relationship with Jesus transforms your life through the Holy Spirit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 flip-card quote-flip" onclick="this.classList.toggle('flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front bg-slate-900 text-white shadow-2xl overflow-hidden rounded-3xl">
+                        <div class="relative z-10 text-xl md:text-2xl font-light italic leading-relaxed px-8">
+                            "The Holy Spirit will guide and comfort you through life and draw you closer to God."
+                        </div>
+                        <i data-lucide="quote" class="absolute -bottom-4 -right-4 w-32 h-32 text-white/5"></i>
+                    </div>
+                    <div class="flip-card-back bg-indigo-900 text-white shadow-2xl rounded-3xl">
+                        <div class="text-xl md:text-2xl font-bold px-8">
+                            Experience Divine Guidance
+                        </div>
+                        <p class="mt-4 text-slate-300 px-8">A personal relationship with God provides a peace that surpasses all understanding.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto py-24 px-6">
+        
+        <div class="accordion-item mb-4 bg-slate-50 rounded-3xl px-8 transition-all border border-transparent active:border-amber-100 active:bg-white">
+            <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center py-8 text-left group">
+                <span class="text-2xl font-bold flex items-center gap-4">
+                    <i data-lucide="book-open" class="text-amber-600"></i> Proof the Bible is from God
+                </span>
+                <i data-lucide="chevron-down" class="chevron transition-transform duration-300"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button onclick="showInfo('unity')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="users" class="w-5 h-5 text-amber-500"></i> <span>Divine Unity of Authors</span>
+                    </button>
+                    <button onclick="showInfo('timeline')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="clock" class="w-5 h-5 text-amber-500"></i> <span>Accurate Earth Timeline</span>
+                    </button>
+                    <button onclick="showInfo('history')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="landmark" class="w-5 h-5 text-amber-500"></i> <span>Verified History & Archaeology</span>
+                    </button>
+                    <button onclick="showInfo('science')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="microscope" class="w-5 h-5 text-amber-500"></i> <span>Verified Scientific Facts</span>
+                    </button>
+                    <button onclick="showInfo('prophecy')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-amber-500"></i> <span>Fulfilled Prophecies</span>
+                    </button>
+                    <button onclick="showInfo('preservation')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="shield" class="w-5 h-5 text-amber-500"></i> <span>Supernatural Preservation</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-4 bg-slate-50 rounded-3xl px-8 transition-all border border-transparent active:border-amber-100 active:bg-white">
+            <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center py-8 text-left group">
+                <span class="text-2xl font-bold flex items-center gap-4">
+                    <i data-lucide="message-circle" class="text-amber-600"></i> Frequently Asked Questions
+                </span>
+                <i data-lucide="chevron-down" class="chevron transition-transform duration-300"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="space-y-6">
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">Who is God and what is our purpose?</h4>
+                                <p class="text-slate-600 text-sm">Understanding the nature of God and our purpose in Him. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-slate-900 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold text-amber-500 mb-2">Our Purpose</h4>
+                                <p class="text-sm leading-relaxed text-slate-300">Understanding the nature of God and the Christian's purpose to love Him and find the true meaning of life.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">Bible Versions & Church</h4>
+                                <p class="text-slate-600 text-sm">Guidance on choosing Bible versions and Church community. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-amber-600 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold mb-2">Bible & Church</h4>
+                                <p class="text-sm leading-relaxed">Guidance on choosing Bible versions and understanding the vital purpose of the Church community.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-4 bg-slate-50 rounded-3xl px-8 transition-all border border-transparent active:border-amber-100 active:bg-white">
+            <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center py-8 text-left group">
+                <span class="text-2xl font-bold flex items-center gap-4">
+                    <i data-lucide="library" class="text-amber-600"></i> Spiritual Growth Resources
+                </span>
+                <i data-lucide="chevron-down" class="chevron transition-transform duration-300"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="space-y-12">
+                    
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="h-px flex-1 bg-slate-200"></div>
+                            <h4 class="text-amber-700 font-extrabold uppercase text-xs tracking-[0.2em]">Digital Learning</h4>
+                            <div class="h-px flex-1 bg-slate-200"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <a href="#" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="book-open-check"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Bible Online</h5>
+                                <p class="text-sm text-slate-500 mb-4">Read scripture online with various plans and translations.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Start Reading <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                            <a href="#" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="file-text"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Study Guides</h5>
+                                <p class="text-sm text-slate-500 mb-4">Deep dive into story summaries and comprehensive guides.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">View Guides <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                            <a href="#" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="sun"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Daily Devotions</h5>
+                                <p class="text-sm text-slate-500 mb-4">Receive daily spiritual nourishment and reflections.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Open Devotions <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="h-px flex-1 bg-slate-200"></div>
+                            <h4 class="text-amber-700 font-extrabold uppercase text-xs tracking-[0.2em]">Media & Fellowship</h4>
+                            <div class="h-px flex-1 bg-slate-200"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <a href="#" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="tv"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Shows & Movies</h5>
+                                <p class="text-sm text-slate-500 mb-4">Inspirational Bible-based videos and cinematic stories.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Watch Now <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                            <a href="#" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="music"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Spiritual Music</h5>
+                                <p class="text-sm text-slate-500 mb-4">Worship and praise music to lift your spirits daily.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Listen Now <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                            <a href="#" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Find a Church</h5>
+                                <p class="text-sm text-slate-500 mb-4">Locate community and discipleship groups near you.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Find Community <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="py-12 text-center text-slate-400 text-sm border-t border-slate-100">
+        <p>© 2026 thebreadoflife.info — Feeding the Soul through the Word of God.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        const infoData = {
+            unity: {
+                title: "Divine Unity of Authors",
+                icon: "users",
+                text: "The Bible was written over 1,500 years by 40 different authors from various walks of life (kings, fishermen, doctors), yet it maintains one perfectly consistent theme: God's redemption of mankind through Jesus Christ."
+            },
+            timeline: {
+                title: "Accurate Earth Timeline",
+                icon: "clock",
+                text: "The Bible provides a chronological record that aligns remarkably with the development of civilizations, tracing lineage and historical epochs with a precision that secular historians continue to study and validate."
+            },
+            history: {
+                title: "Verified History & Archaeology",
+                icon: "landmark",
+                text: "Thousands of archaeological finds—from the Dead Sea Scrolls to the Pool of Siloam—consistently confirm the people, places, and events described in the Bible as historical facts rather than myths."
+            },
+            science: {
+                title: "Verified Scientific Facts",
+                icon: "microscope",
+                text: "The Bible described scientific truths long before they were 'discovered,' such as the earth being a sphere (Isaiah 40:22), the suspension of the earth in space (Job 26:7), and the complex laws of hygiene and quarantine."
+            },
+            prophecy: {
+                title: "Fulfilled Prophecies",
+                icon: "sparkles",
+                text: "The Bible contains hundreds of specific prophecies that have already been fulfilled with 100% accuracy, including the rise and fall of empires and over 300 specific details about the life, death, and resurrection of Jesus."
+            },
+            preservation: {
+                title: "Supernatural Preservation",
+                icon: "shield",
+                text: "Despite being the most attacked book in history—subjected to bans, burnings, and intense criticism—the Bible remains the most widely translated and distributed book in the world, preserved through the ages."
+            }
+        };
+
+        function showInfo(key) {
+            const data = infoData[key];
+            document.getElementById('infoModalTitle').innerText = data.title;
+            document.getElementById('infoModalText').innerText = data.text;
+            document.getElementById('infoModalIcon').innerHTML = `<i data-lucide="${data.icon}" class="text-amber-600 w-8 h-8"></i>`;
+            lucide.createIcons();
+            toggleModal('infoModal');
+        }
+
+        function toggleAccordion(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.accordion-item').forEach(el => el.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        }
+
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
