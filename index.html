@@ -98,7 +98,7 @@
                 <h2 class="text-3xl font-extrabold text-slate-900 mb-2">How can we pray?</h2>
                 <p class="text-slate-500 mb-8 font-medium">Leave your request below and we will join you in prayer.</p>
                 
-                <form action="https://formspree.io/f/mnjbqpjr" method="POST" class="space-y-4">
+                <form id="prayerForm" action="https://formspree.io/f/mnjbqpjr" method="POST" class="space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">First Name</label>
@@ -117,7 +117,7 @@
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Your Prayer Request</label>
                         <textarea name="prayer_request" required rows="4" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 focus:border-amber-500 outline-none transition resize-none" placeholder="Tell us how we can pray for you..."></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-amber-600 text-white font-bold py-4 rounded-xl hover:bg-slate-900 transition shadow-lg shadow-amber-600/20">Send Request</button>
+                    <button type="submit" id="submitBtn" class="w-full bg-amber-600 text-white font-bold py-4 rounded-xl hover:bg-slate-900 transition shadow-lg shadow-amber-600/20">Send Request</button>
                 </form>
             </div>
         </div>
@@ -416,6 +416,44 @@
             document.getElementById('resourceFrame').src = url;
             toggleModal('resourceModal');
         }
+
+        // New AJAX Submission Logic
+        const form = document.getElementById('prayerForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // UI Feedback
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success: Clear form, close modal, notify user
+                    form.reset();
+                    toggleModal('prayerModal');
+                    alert("Thank you! Your prayer request has been submitted.");
+                } else {
+                    alert("Oops! There was a problem submitting your request.");
+                }
+            } catch (error) {
+                alert("Connection error. Please try again later.");
+            } finally {
+                submitBtn.innerText = "Send Request";
+                submitBtn.disabled = false;
+            }
+        });
     </script>
 </body>
 </html>
