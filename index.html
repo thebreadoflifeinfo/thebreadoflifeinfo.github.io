@@ -14,7 +14,7 @@
         .accordion-item.active .chevron { transform: rotate(180deg); color: #f59e0b; }
         .bg-grain { background-color: #ffffff; background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png"); }
 
-        /* 3D Flip Card Logic - Updated for dynamic height on mobile */
+        /* 3D Flip Card Logic */
         .flip-card { perspective: 1000px; cursor: pointer; }
         
         .flip-card-inner {
@@ -38,10 +38,19 @@
             padding: 2rem;
         }
 
-        /* Mobile specific: Cards stack/grow based on content */
+        /* Mobile specific fix: Ensuring cards expand to content */
         @media (max-width: 767px) {
-            .flip-card-back { position: absolute; top: 0; left: 0; height: 100%; }
-            .flip-card-front { position: relative; } /* Sets the height of the parent */
+            .flip-card { height: auto; min-height: 200px; }
+            .flip-card-inner { display: grid; }
+            .flip-card-front, .flip-card-back { 
+                grid-area: 1 / 1; 
+                position: relative; 
+                height: auto;
+            }
+            /* The back needs to be hidden initially but relative so it takes up space when rotated */
+            .flip-card-back { transform: rotateY(180deg); visibility: hidden; }
+            .flip-card.flipped .flip-card-back { visibility: visible; }
+            .flip-card.flipped .flip-card-front { visibility: hidden; }
         }
 
         /* Desktop specific: Fixed heights for grid alignment */
@@ -50,9 +59,8 @@
             .flip-card-front, .flip-card-back { position: absolute; height: 100%; }
             .faq-flip-container { height: 180px; }
             .quote-flip { height: 200px; }
+            .flip-card-back { transform: rotateY(180deg); }
         }
-
-        .flip-card-back { transform: rotateY(180deg); }
 
         /* Modal Logic */
         #prayerModal, #infoModal, #resourceModal { display: none; }
