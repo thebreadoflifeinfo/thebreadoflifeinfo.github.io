@@ -14,6 +14,18 @@
         .accordion-item.active .chevron { transform: rotate(180deg); color: #f59e0b; }
         .bg-grain { background-color: #ffffff; background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png"); }
 
+        /* Pulsating Glow Animation */
+        @keyframes pulsate-glow {
+            0% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.6); border-color: rgba(245, 158, 11, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.2); }
+        }
+
+        .glow-attention {
+            animation: pulsate-glow 2s infinite ease-in-out;
+            border-width: 2px !important;
+        }
+
         /* 3D Flip Card Logic */
         .flip-card { perspective: 1000px; cursor: pointer; }
         
@@ -36,18 +48,6 @@
             flex-direction: column;
             justify-content: center;
             padding: 2rem;
-        }
-
-        /* Pulsating Glow Effect */
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0px rgba(245, 158, 11, 0.4); border-color: rgba(245, 158, 11, 0.2); }
-            50% { box-shadow: 0 0 20px 5px rgba(245, 158, 11, 0.7); border-color: rgba(245, 158, 11, 1); }
-            100% { box-shadow: 0 0 0 0px rgba(245, 158, 11, 0.4); border-color: rgba(245, 158, 11, 0.2); }
-        }
-
-        .glow-attention {
-            animation: pulse-glow 2s infinite ease-in-out;
-            border-width: 2px !important;
         }
 
         /* Mobile specific fix: Ensuring cards expand to content */
@@ -272,7 +272,112 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">Why did God create us and everything we see?</h4>
+                                <p class="text-slate-600 text-sm">Understanding the purpose for God's creation. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-amber-600 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold mb-2">Why God created us and everything we see.</h4>
+                                <p class="text-sm leading-relaxed">God created all things and mankind for His pleasure and to manifest His glory (Revelation 4:11, Isaiah 43:7), desiring a people who would worship Him and reflect His holiness. He fashioned the world as a stage to demonstrate His power and His love, seeking a relationship with those created in His own image.</p>
+                            </div>
+                        </div>
                     </div>
+                    
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">Why do we sin?</h4>
+                                <p class="text-slate-600 text-sm">Understanding the origin of our sinful nature. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-slate-900 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold text-amber-500 mb-2">Why we sin.</h4>
+                                <p class="text-sm leading-relaxed">We sin because we have inherited a corrupt nature from our first father, Adam, whose original rebellion passed the "death sentence" of a sinful heart down to every human being (Romans 5:12). This inward depravity ensures that we aren't just sinners because we act out, but we act out because we are born sinners by nature and by choice (Jeremiah 17:9).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">Why would God send us to hell if we are all sinful by nature?</h4>
+                                <p class="text-slate-600 text-sm">Understanding why God cannot allow sin into heaven. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-amber-600 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold mb-2">Why God cannot allow sin into heaven.</h4>
+                                <p class="text-sm leading-relaxed">As a Holy Judge, He must uphold the law against rebellion (Genesis 18:25). Because God is perfectly righteous, He cannot allow sin into a holy Heaven; therefore, Hell is the necessary, just destination for those who remain in their natural state of enmity against Him.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">What is the purpose for Christians?</h4>
+                                <p class="text-slate-600 text-sm">Understanding what God's plan for Christians. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-slate-900 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold text-amber-500 mb-2">God's purpose for Christians on earth.</h4>
+                                <p class="text-sm leading-relaxed">A Christian’s purpose is to glorify God by yielding their life as a living sacrifice (1 Corinthians 6:20), serving as an ambassador for Christ to reach a lost world with the Gospel. Having been bought with a price, the believer is called to deny the flesh and bear fruit that reflects the holiness and light of their Savior.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">What is spiritual warfare?</h4>
+                                <p class="text-slate-600 text-sm">Understanding what spiritual warfare is. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-amber-600 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold mb-2">What spiritual warfare is.</h4>
+                                <p class="text-sm leading-relaxed">This is the invisible conflict between the believer and the powers of darkness, led by the devil, who seeks to devour the Christian’s testimony and hinder the work of God (Ephesians 6:12). Although our souls are saved, we remain in a world influenced by the wicked one and must contend against spiritual enemies that hate the Christ we serve (1 Peter 5:8, 2 Timothy 3:12).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">Why should Christians go to Church?</h4>
+                                <p class="text-slate-600 text-sm">Understanding what God's plan for the church. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-slate-900 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold text-amber-500 mb-2">God's purpose for the church.</h4>
+                                <p class="text-sm leading-relaxed">A Christian should go to church to find mutual edification and strength among the brethren, fulfilling the biblical command to assemble for worship and the preaching of the Word. It is within the local church that a believer is held accountable, uses their spiritual gifts to serve others (Ephesians 4:11-12), and remains "stirred up" unto love and good works in these last days (Hebrews 10:25).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">How do I pray?</h4>
+                                <p class="text-slate-600 text-sm">Understanding how God expects us to pray. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-amber-600 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold mb-2">How God expects us to pray.</h4>
+                                <p class="text-sm leading-relaxed">To pray according to the Scriptures is to approach the Father with a sincere heart, coming through the authority of Jesus Christ to make your requests and thanksgivings known (Matthew 6:7, Hebrews 4:16). It is not about "vain repetitions" or fancy words, but about a humble child of God speaking to their Heavenly Father in faith, believing that He hears and answers according to His will (James 5:16).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flip-card faq-flip-container" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
+                                <h4 class="font-bold text-slate-900 mb-2">What makes Christianity different from every other beliefs?</h4>
+                                <p class="text-slate-600 text-sm">Understanding how Chirstianity is unique. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                            </div>
+                            <div class="flip-card-back bg-slate-900 text-white shadow-xl rounded-2xl p-6">
+                                <h4 class="font-bold text-amber-500 mb-2">How Christianity is different from every other beliefs.</h4>
+                                <p class="text-sm leading-relaxed">While every other religion is a ladder of human effort trying to reach up to God, Christianity is God reaching down to man through the finished work of Jesus Christ (John 14:6). It is the only "belief" built not on a set of rituals or a code of conduct to earn favor, but on a divine rescue mission where salvation is a free gift received by faith alone (Ephesians 2:8-9).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
 
@@ -285,6 +390,7 @@
             </button>
             <div class="accordion-content">
                 <div class="space-y-12">
+                    
                     <div>
                         <div class="flex items-center gap-3 mb-6">
                             <div class="h-px flex-1 bg-slate-200"></div>
@@ -292,7 +398,7 @@
                             <div class="h-px flex-1 bg-slate-200"></div>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <a href="#" onclick="openResource(event, 'Bible Online', 'https://www.playbook.com/s/thebreadoflifeinfo/KQrNVBmeixjZjrGBknP3z5rf')" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                            <a href="https://www.playbook.com/s/thebreadoflifeinfo/KQrNVBmeixjZjrGBknP3z5rf" onclick="openResource(event, 'Bible Online', 'https://www.playbook.com/s/thebreadoflifeinfo/KQrNVBmeixjZjrGBknP3z5rf')" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
                                 <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
                                     <i data-lucide="book-open-check"></i>
                                 </div>
@@ -300,11 +406,63 @@
                                 <p class="text-sm text-slate-500 mb-4">Read scripture with various outlined plans.</p>
                                 <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Start Reading <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
                             </a>
-                            </div>
+                            <a href="https://www.playbook.com/s/thebreadoflifeinfo/sy38p3dytrreMpC8RP8Xk2eX" onclick="openResource(event, 'Study Guides', 'https://www.playbook.com/s/thebreadoflifeinfo/sy38p3dytrreMpC8RP8Xk2eX')" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="file-text"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Study Guides</h5>
+                                <p class="text-sm text-slate-500 mb-4">Deep dive into story summaries and comprehensive guides.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">View Guides <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                            <a href="https://www.playbook.com/s/thebreadoflifeinfo/hYws1xGhnbnrhXTZi9Vg4ZS6" onclick="openResource(event, 'Daily Devotions', 'https://www.playbook.com/s/thebreadoflifeinfo/hYws1xGhnbnrhXTZi9Vg4ZS6')" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="sun"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Daily Devotions</h5>
+                                <p class="text-sm text-slate-500 mb-4">Receive daily spiritual nourishment and reflections.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Open Devotions <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                        </div>
                     </div>
+
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="h-px flex-1 bg-slate-200"></div>
+                            <h4 class="text-amber-700 font-extrabold uppercase text-xs tracking-[0.2em]">Media & Fellowship</h4>
+                            <div class="h-px flex-1 bg-slate-200"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <a href="https://www.angel.com/watch/the-chosen" onclick="openResource(event, 'Shows & Movies', 'https://www.playbook.com/s/thebreadoflifeinfo/z9v8p8zie6HbUFRi9tZBwK5G')" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="tv"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Shows & Movies</h5>
+                                <p class="text-sm text-slate-500 mb-4">Inspirational Bible-based videos and cinematic stories.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Watch Now <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                            <a href="https://www.klove.com" onclick="openResource(event, 'Spiritual Music', 'https://www.playbook.com/s/thebreadoflifeinfo/1Gw1ihht6Vkdmb34rYbc1p8S')" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="music"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Spiritual Music</h5>
+                                <p class="text-sm text-slate-500 mb-4">Worship and praise music to lift your spirits daily.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Listen Now <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                            <a href="https://www.playbook.com/s/thebreadoflifeinfo/pHzzG5Ku6U7MxLqGPmDa3LAA" onclick="openResource(event, 'Testimonies', 'https://www.playbook.com/s/thebreadoflifeinfo/pHzzG5Ku6U7MxLqGPmDa3LAA')" class="resource-card group bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-amber-200 transition-all duration-300">
+                                <div class="resource-icon w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-4 transition-all duration-300">
+                                    <i data-lucide="message-square"></i>
+                                </div>
+                                <h5 class="font-bold text-slate-900 mb-2">Testimonies</h5>
+                                <p class="text-sm text-slate-500 mb-4">Be encouraged by powerful stories of God's work.</p>
+                                <span class="text-amber-600 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Read Stories <i data-lucide="arrow-right" class="w-3 h-3"></i></span>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
+
     </section>
 
     <footer class="py-12 text-center text-slate-400 text-sm border-t border-slate-100">
@@ -315,12 +473,36 @@
         lucide.createIcons();
         
         const infoData = {
-            unity: { title: "Divine Unity of Authors", icon: "users", text: "The Bible was written over 1,500 years by 40 different authors..." },
-            timeline: { title: "Accurate Earth Timeline", icon: "clock", text: "The Bible provides a chronological record..." },
-            history: { title: "Verified History & Archaeology", icon: "landmark", text: "Thousands of archaeological finds..." },
-            science: { title: "Verified Scientific Facts", icon: "microscope", text: "The Bible described scientific truths..." },
-            prophecy: { title: "Fulfilled Prophecies", icon: "sparkles", text: "The Bible contains hundreds of specific prophecies..." },
-            preservation: { title: "Supernatural Preservation", icon: "shield", text: "Despite being the most attacked book in history..." }
+            unity: {
+                title: "Divine Unity of Authors",
+                icon: "users",
+                text: "The Bible was written over 1,500 years by 40 different authors from various walks of life (kings, fishermen, doctors), yet it maintains one perfectly consistent theme: God's redemption of mankind through Jesus Christ."
+            },
+            timeline: {
+                title: "Accurate Earth Timeline",
+                icon: "clock",
+                text: "The Bible provides a chronological record that aligns remarkably with the development of civilizations, tracing lineage and historical epochs with a precision that secular historians continue to study and validate."
+            },
+            history: {
+                title: "Verified History & Archaeology",
+                icon: "landmark",
+                text: "Thousands of archaeological finds—from the Dead Sea Scrolls to the Pool of Siloam—consistently confirm the people, places, and events described in the Bible as historical facts rather than myths."
+            },
+            science: {
+                title: "Verified Scientific Facts",
+                icon: "microscope",
+                text: "The Bible described scientific truths long before they were 'discovered,' such as the earth being a sphere (Isaiah 40:22), the suspension of the earth in space (Job 26:7), and the complex laws of hygiene and quarantine."
+            },
+            prophecy: {
+                title: "Fulfilled Prophecies",
+                icon: "sparkles",
+                text: "The Bible contains hundreds of specific prophecies that have already been fulfilled with 100% accuracy, including the rise and fall of empires and over 300 specific details about the life, death, and resurrection of Jesus."
+            },
+            preservation: {
+                title: "Supernatural Preservation",
+                icon: "shield",
+                text: "Despite being the most attacked book in history—subjected to bans, burnings, and intense criticism—the Bible remains the most widely translated and distributed book in the world, preserved through the ages."
+            }
         };
 
         function showInfo(key) {
@@ -342,6 +524,7 @@
         function toggleModal(modalId) {
             const modal = document.getElementById(modalId);
             modal.classList.toggle('active');
+            
             if (modalId === 'resourceModal' && !modal.classList.contains('active')) {
                 document.getElementById('resourceFrame').src = '';
             }
@@ -361,13 +544,16 @@
             e.preventDefault();
             submitBtn.innerText = "Sending...";
             submitBtn.disabled = true;
+
             const formData = new FormData(form);
+
             try {
                 const response = await fetch(form.action, {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
+
                 if (response.ok) {
                     form.reset();
                     toggleModal('prayerModal');
