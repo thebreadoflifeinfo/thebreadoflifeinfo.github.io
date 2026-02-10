@@ -79,6 +79,10 @@
 
         /* Resource Card Hover */
         .resource-card:hover .resource-icon { transform: scale(1.1); background-color: #f59e0b; color: white; }
+
+        /* Privacy Banner */
+        #privacyBanner { display: none; }
+        #privacyBanner.visible { display: flex; }
     </style>
 </head>
 <body class="bg-white text-slate-800">
@@ -465,12 +469,69 @@
 
     </section>
 
+    <div id="privacyBanner" class="fixed bottom-0 left-0 right-0 z-[100] bg-slate-900 text-white p-4 md:p-6 flex-col md:flex-row items-center justify-between gap-4 border-t border-amber-600/30">
+        <p class="text-xs md:text-sm text-slate-300 text-center md:text-left max-w-3xl">
+            We value your privacy. To improve your experience, we track unique visitors and basic technical info (IP & browser). By continuing, you acknowledge this notice.
+        </p>
+        <button onclick="acknowledgePrivacy()" class="bg-amber-600 text-white px-8 py-2 rounded-full text-sm font-bold hover:bg-amber-500 transition-all whitespace-nowrap">I Acknowledge</button>
+    </div>
+
     <footer class="py-12 text-center text-slate-400 text-sm border-t border-slate-100">
         <p>© 2026 thebreadoflife.info — Feeding the Soul through the Word of God.</p>
     </footer>
 
     <script>
         lucide.createIcons();
+
+        // Unique Visitor Tracking Logic
+        async function trackVisitor() {
+            const hasVisited = localStorage.getItem('tbol_visited');
+            const hasAcknowledged = localStorage.getItem('tbol_privacy_ack');
+
+            if (!hasVisited && hasAcknowledged) {
+                try {
+                    // Fetch IP using a public API
+                    const ipResponse = await fetch('https://api.ipify.org?format=json');
+                    const ipData = await ipResponse.json();
+                    
+                    const payload = {
+                        visitor_ip: ipData.ip,
+                        user_agent: navigator.userAgent,
+                        tracking_type: "Unique Visit Detected",
+                        timestamp: new Date().toISOString()
+                    };
+
+                    // Send to Formspree
+                    await fetch("https://formspree.io/f/mnjbqpjr", {
+                        method: 'POST',
+                        body: JSON.stringify(payload),
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json' 
+                        }
+                    });
+
+                    // Set flag so we don't track again
+                    localStorage.setItem('tbol_visited', 'true');
+                } catch (error) {
+                    console.error("Tracking error:", error);
+                }
+            }
+
+            // Show banner if not acknowledged
+            if (!hasAcknowledged) {
+                document.getElementById('privacyBanner').classList.add('visible');
+            }
+        }
+
+        function acknowledgePrivacy() {
+            localStorage.setItem('tbol_privacy_ack', 'true');
+            document.getElementById('privacyBanner').classList.remove('visible');
+            trackVisitor(); // Trigger track now that they acknowledged
+        }
+
+        // Initialize tracking on load
+        window.addEventListener('DOMContentLoaded', trackVisitor);
         
         const infoData = {
             unity: {
