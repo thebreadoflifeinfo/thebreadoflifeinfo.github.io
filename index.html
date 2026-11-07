@@ -14,6 +14,10 @@
         .accordion-item.active .chevron { transform: rotate(180deg); color: #f59e0b; }
         .bg-grain { background-color: #ffffff; background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png"); }
 
+        /* Hide Scrollbar Utility */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
         /* Pulsating Glow Animation */
         @keyframes pulsate-glow {
             0% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.2); border-color: rgba(245, 158, 11, 0.2); }
@@ -98,19 +102,19 @@
     </nav>
 
     <div id="infoModal" class="fixed inset-0 z-[70] items-center justify-center p-6 bg-slate-900/60 backdrop-blur-md">
-        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden relative p-8 md:p-10">
-            <button onclick="toggleModal('infoModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden relative p-8 md:p-10 max-h-[90vh] overflow-y-auto no-scrollbar">
+            <button onclick="toggleModal('infoModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 z-10">
                 <i data-lucide="x"></i>
             </button>
             <div id="infoModalIcon" class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mb-6"></div>
             <h2 id="infoModalTitle" class="text-2xl font-extrabold text-slate-900 mb-4"></h2>
-            <p id="infoModalText" class="text-slate-600 leading-relaxed text-lg"></p>
+            <div id="infoModalText" class="text-slate-600 leading-relaxed space-y-4 text-base"></div>
         </div>
     </div>
 
     <!-- Faith-Based Music Playlists Modal -->
     <div id="musicModal" class="fixed inset-0 z-[75] items-center justify-center p-4 md:p-10 bg-slate-900/70 backdrop-blur-md">
-        <div class="bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden relative flex flex-col p-6 md:p-8">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden relative flex flex-col p-6 md:p-8 no-scrollbar">
             <button onclick="toggleModal('musicModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 z-10">
                 <i data-lucide="x"></i>
             </button>
@@ -123,8 +127,7 @@
                     <p class="text-sm text-slate-500">Choose a playlist to watch and listen directly on YouTube.</p>
                 </div>
             </div>
-            <div class="flex-1 overflow-y-auto space-y-4 pr-1">
-                <!-- Music - Christian Praise & Worship -->
+            <div class="flex-1 overflow-y-auto space-y-4 pr-1 no-scrollbar">
                 <a href="https://www.youtube.com/playlist?list=PLNp0-BW0GFak" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-50 hover:bg-amber-50 border border-slate-100 hover:border-amber-200 rounded-2xl transition group">
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition">
@@ -138,7 +141,6 @@
                     <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-amber-600 transition"></i>
                 </a>
 
-                <!-- Music - Gospel Hymns -->
                 <a href="https://www.youtube.com/playlist?list=PLDdVOoLna4r0" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-50 hover:bg-amber-50 border border-slate-100 hover:border-amber-200 rounded-2xl transition group">
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition">
@@ -152,7 +154,6 @@
                     <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-amber-600 transition"></i>
                 </a>
 
-                <!-- Music - Christian Rap -->
                 <a href="https://www.youtube.com/playlist?list=PLCQpQqAhWUIc" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-50 hover:bg-amber-50 border border-slate-100 hover:border-amber-200 rounded-2xl transition group">
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition">
@@ -171,7 +172,7 @@
 
     <!-- Testimonies Playlists Modal -->
     <div id="testimoniesModal" class="fixed inset-0 z-[75] items-center justify-center p-4 md:p-10 bg-slate-900/70 backdrop-blur-md">
-        <div class="bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden relative flex flex-col p-6 md:p-8">
+        <div class="bg-white w-full max-w-2xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden relative flex flex-col p-6 md:p-8 no-scrollbar">
             <button onclick="toggleModal('testimoniesModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 z-10">
                 <i data-lucide="x"></i>
             </button>
@@ -184,8 +185,7 @@
                     <p class="text-sm text-slate-500">Choose a playlist to watch and listen directly on YouTube.</p>
                 </div>
             </div>
-            <div class="flex-1 overflow-y-auto space-y-4 pr-1">
-                <!-- Testimonies - Salvation & Transformation -->
+            <div class="flex-1 overflow-y-auto space-y-4 pr-1 no-scrollbar">
                 <a href="https://www.youtube.com/playlist?list=PLFuv6z3oLa7Q" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-50 hover:bg-amber-50 border border-slate-100 hover:border-amber-200 rounded-2xl transition group">
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition">
@@ -198,7 +198,6 @@
                     </div>
                     <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-amber-600 transition"></i>
                 </a>
-				<!-- Testimonies - God's Protection -->
                 <a href="https://youtube.com/playlist?list=PLXr-105-OOPw" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-50 hover:bg-amber-50 border border-slate-100 hover:border-amber-200 rounded-2xl transition group">
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition">
@@ -211,7 +210,6 @@
                     </div>
                     <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-amber-600 transition"></i>
                 </a>
-				<!-- Testimonies - God's Provision -->
                 <a href="https://www.youtube.com/playlist?list=PLBwrkup6s0DI" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-50 hover:bg-amber-50 border border-slate-100 hover:border-amber-200 rounded-2xl transition group">
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition">
@@ -224,7 +222,6 @@
                     </div>
                     <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-amber-600 transition"></i>
                 </a>
-                <!-- Testimonies - God's Healing -->
                 <a href="https://www.youtube.com/playlist?list=PLdf5qbWTGNaI" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-4 bg-slate-50 hover:bg-amber-50 border border-slate-100 hover:border-amber-200 rounded-2xl transition group">
                     <div class="flex items-center gap-4">
                         <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition">
@@ -242,25 +239,25 @@
     </div>
 
     <div id="resourceModal" class="fixed inset-0 z-[80] items-center justify-center p-4 md:p-10 bg-slate-900/80 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-6xl h-full rounded-3xl shadow-2xl overflow-hidden relative flex flex-col">
+        <div class="bg-white w-full max-w-6xl h-full rounded-3xl shadow-2xl overflow-hidden relative flex flex-col no-scrollbar">
             <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-white">
                 <span id="resourceModalTitle" class="font-bold text-slate-900 truncate pr-8">Resource</span>
                 <button onclick="toggleModal('resourceModal')" class="text-slate-400 hover:text-slate-900">
                     <i data-lucide="x"></i>
                 </button>
             </div>
-            <div class="flex-1 bg-slate-50">
+            <div class="flex-1 bg-slate-50 no-scrollbar">
                 <iframe id="resourceFrame" src="" class="w-full h-full border-none"></iframe>
             </div>
         </div>
     </div>
 
     <div id="prayerModal" class="fixed inset-0 z-[60] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden relative">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden relative no-scrollbar">
             <button onclick="toggleModal('prayerModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900">
                 <i data-lucide="x"></i>
             </button>
-            <div class="p-8 md:p-12">
+            <div class="p-8 md:p-12 max-h-[90vh] overflow-y-auto no-scrollbar">
                 <h2 class="text-3xl font-extrabold text-slate-900 mb-2">How can we pray?</h2>
                 <p class="text-slate-500 mb-8 font-medium">Leave your request below and we will join you in prayer.</p>
                 
@@ -357,6 +354,38 @@
 
     <section class="max-w-5xl mx-auto py-24 px-6">
         
+        <!-- Proof there is a God Section -->
+        <div class="accordion-item mb-4 bg-slate-50 rounded-3xl px-8 transition-all border border-transparent active:border-amber-100 active:bg-white">
+            <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center py-8 text-left group">
+                <span class="text-2xl font-bold flex items-center gap-4">
+                    <i data-lucide="compass" class="text-amber-600"></i> Proof God is Real
+                </span>
+                <i data-lucide="chevron-down" class="chevron transition-transform duration-300"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button onclick="showGodProof('universe')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-amber-500"></i> <span>The Universe (Cosmic Kitchen & Fine-Tuning)</span>
+                    </button>
+                    <button onclick="showGodProof('geosphere')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="mountain" class="w-5 h-5 text-amber-500"></i> <span>The Geosphere (The Prepared Nursery)</span>
+                    </button>
+                    <button onclick="showGodProof('hydrosphere')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="droplet" class="w-5 h-5 text-amber-500"></i> <span>The Hydrosphere (Custom Plumbing System)</span>
+                    </button>
+                    <button onclick="showGodProof('atmosphere')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="wind" class="w-5 h-5 text-amber-500"></i> <span>The Atmosphere (Greenhouse Air-Lock)</span>
+                    </button>
+                    <button onclick="showGodProof('biosphere')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="cpu" class="w-5 h-5 text-amber-500"></i> <span>The Biosphere (Software & Information)</span>
+                    </button>
+                    <button onclick="showGodProof('reproduction')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="users" class="w-5 h-5 text-amber-500"></i> <span>Reproduction & Simultaneous Maturity</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="accordion-item mb-4 bg-slate-50 rounded-3xl px-8 transition-all border border-transparent active:border-amber-100 active:bg-white">
             <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center py-8 text-left group">
                 <span class="text-2xl font-bold flex items-center gap-4">
@@ -383,6 +412,31 @@
                     </button>
                     <button onclick="showInfo('preservation')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
                         <i data-lucide="shield" class="w-5 h-5 text-amber-500"></i> <span>Supernatural Preservation</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-4 bg-slate-50 rounded-3xl px-8 transition-all border border-transparent active:border-amber-100 active:bg-white">
+            <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center py-8 text-left group">
+                <span class="text-2xl font-bold flex items-center gap-4">
+                    <i data-lucide="shield-check" class="text-amber-600"></i> Proof Jesus Christ is God
+                </span>
+                <i data-lucide="chevron-down" class="chevron transition-transform duration-300"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button onclick="showJesusProof('blueprint')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="scroll" class="w-5 h-5 text-amber-500"></i> <span>The Blueprint - Messianic Prophecies</span>
+                    </button>
+                    <button onclick="showJesusProof('claims')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="crown" class="w-5 h-5 text-amber-500"></i> <span>The Self-Definition - Direct Claims to Deity</span>
+                    </button>
+                    <button onclick="showJesusProof('external')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="landmark" class="w-5 h-5 text-amber-500"></i> <span>The External Validation - Extra-Biblical Records</span>
+                    </button>
+                    <button onclick="showJesusProof('eyewitness')" class="flex items-center gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-amber-300 hover:shadow-md transition text-left">
+                        <i data-lucide="users" class="w-5 h-5 text-amber-500"></i> <span>The Empirical Anchor - Eyewitness Testimony</span>
                     </button>
                 </div>
             </div>
@@ -505,7 +559,7 @@
                         <div class="flip-card-inner">
                             <div class="flip-card-front bg-white border border-slate-100 shadow-sm rounded-2xl p-6">
                                 <h4 class="font-bold text-slate-900 mb-2">What makes Christianity different from every other beliefs?</h4>
-                                <p class="text-slate-600 text-sm">Understanding how Chirstianity is unique. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
+                                <p class="text-slate-600 text-sm">Understanding how Christianity is unique. <span class="text-amber-600 font-bold ml-1">(Click to flip)</span></p>
                             </div>
                             <div class="flip-card-back bg-slate-900 text-white shadow-xl rounded-2xl p-6">
                                 <h4 class="font-bold text-amber-500 mb-2">How Christianity is different from every other beliefs.</h4>
@@ -623,7 +677,6 @@
 
             if (!hasVisited && hasAcknowledged) {
                 try {
-                    // Fetch IP using a public API
                     const ipResponse = await fetch('https://api.ipify.org?format=json');
                     const ipData = await ipResponse.json();
                     
@@ -634,7 +687,6 @@
                         timestamp: new Date().toISOString()
                     };
 
-                    // Send to Formspree
                     await fetch("https://formspree.io/f/mnjbqpjr", {
                         method: 'POST',
                         body: JSON.stringify(payload),
@@ -644,14 +696,12 @@
                         }
                     });
 
-                    // Set flag so we don't track again
                     localStorage.setItem('tbol_visited', 'true');
                 } catch (error) {
                     console.error("Tracking error:", error);
                 }
             }
 
-            // Show banner if not acknowledged
             if (!hasAcknowledged) {
                 document.getElementById('privacyBanner').classList.add('visible');
             }
@@ -660,10 +710,9 @@
         function acknowledgePrivacy() {
             localStorage.setItem('tbol_privacy_ack', 'true');
             document.getElementById('privacyBanner').classList.remove('visible');
-            trackVisitor(); // Trigger track now that they acknowledged
+            trackVisitor();
         }
 
-        // Initialize tracking on load
         window.addEventListener('DOMContentLoaded', trackVisitor);
         
         const infoData = {
@@ -698,6 +747,80 @@
                 text: "Despite being the most attacked book in history—subjected to bans, burnings, and intense criticism—the Bible remains the most widely translated and distributed book in the world, preserved through the ages."
             }
         };
+
+        const jesusProofData = {
+            blueprint: {
+                title: "The Blueprint - Fulfillment of Detailed Messianic Prophecies",
+                icon: "scroll",
+                text: "Centuries before Jesus was born, the Hebrew Scriptures laid down hyper-specific blueprints regarding the coming Messiah—records preserved by Jewish scribes who had no Christian bias:<br><br>• <strong>Geographic & Lineage Precision:</strong> Prophesied to be born in Bethlehem (Micah 5:2) from the lineage of Abraham, Judah, and King David (Isaiah 9:7)—fulfilled despite His family's residence in Nazareth.<br>• <strong>The Exact Details of His Death:</strong> Centuries <em>before</em> crucifixion was even invented as a method of execution, Psalm 22 and Isaiah 53 accurately detailed the piercing of hands and feet, the casting of lots for garments, and substitutionary suffering.<br>• <strong>The Betrayal Price:</strong> Prophesied in Zechariah 11:12–13 that the Messiah would be betrayed for thirty pieces of silver, which would be thrown into the house of the Lord to purchase a potter's field—a detail meticulously realized in the Judas narrative.<br>• <strong>Mathematical Improbability:</strong> Statisticians note that the probability of a single individual fulfilling even a fraction of these baseline prophecies by chance is astronomically impossible, pointing to intentional design."
+            },
+            claims: {
+                title: "The Self-Definition - Direct Claims to Deity",
+                icon: "crown",
+                text: "An airtight case requires establishing that Jesus explicitly claimed the identity He is credited with, rather than being retroactively divinized by later generations:<br><br>• <strong>Divine Identity:</strong> Jesus did not present Himself merely as a prophet; He accepted worship, applied the eternal divine title to Himself ('Before Abraham was, I am' [John 8:58]), and declared, 'I and the Father are one' (John 10:30).<br>• <strong>Prerogatives of God:</strong> In first-century Judaism, only God could forgive sins. By repeatedly forgiving sins on His own authority (e.g., Mark 2), Jesus provoked instant charges of blasphemy because His contemporaries recognized He was claiming to sit in God’s place."
+            },
+            external: {
+                title: "The External Validation - Extra-Biblical and Cosmic Records",
+                icon: "landmark",
+                text: "Skeptics often demand external validation outside of religious texts. Non-Christian historians and ancient cosmic anomalies corroborate the framework of His life:<br><br>• <strong>Tacitus (c. AD 116):</strong> The prominent Roman historian confirms that Jesus was executed under Pontius Pilate during Tiberius Caesar's reign and notes that a 'deadly superstition' (Christianity) spread to Rome where believers worshipped Jesus as divine.<br>• <strong>Flavius Josephus (c. AD 93):</strong> The Jewish historian records Jesus's reputation as a wise teacher, His crucifixion under Pilate, and the persistent report among His followers that He appeared to them alive three days later.<br>• <strong>The Unexplained Cosmic Darkness:</strong> Independent ancient historians like Thallus (c. AD 52) and Phlegon (c. AD 137) documented a massive earthquake and an unexplained global darkening of the sun to the point where stars were visible at midday, corroborating the cosmic anomalies accompanying the crucifixion."
+            },
+            eyewitness: {
+                title: "The Empirical Anchor - Eyewitness Testimony & Hostile Witnesses",
+                icon: "users",
+                text: "The historical bedrock of the case rests on early, verifiable eyewitness data that defies legendary development:<br><br>• <strong>Ultra-Early Creeds:</strong> 1 Corinthians 15 preserves a creedal formula dated by mainstream historians to within 1 to 5 years of the crucifixion. It lists specific eyewitness groups—including Peter, James, and an open-air gathering of over 500 people at once—proving belief was immediate and rooted in living witnesses.<br>• <strong>The Conversion of Skeptics:</strong> Some of the strongest accounts come from hostile or skeptical witnesses. Paul of Tarsus abandoned a life of persecuting Christians because of an encounter he was convinced was the risen Jesus.<br>• <strong>The Radical Transformation of the Disciples:</strong> The disciples fled in terror during the crucifixion, yet weeks later were openly preaching the resurrection in Jerusalem, ultimately facing torture and martyrdom rather than recant. People will die for what they believe is true, but they do not willingly suffer execution for a conspiracy they know they fabricated."
+            }
+        };
+
+        const godProofData = {
+            universe: {
+                title: "The Universe (The Cosmic Kitchen & Fine-Tuning)",
+                icon: "sparkles",
+                text: "<strong>The Analogy:</strong> Imagine walking into a kitchen and finding a multi-course gourmet meal perfectly cooked and plated on the table. When you ask your friend how it happened, they tell you: <em>'Nobody cooked it. An explosion happened in the pantry, and cans, flour, spices, and heat randomly collided until they formed a fully baked, perfectly seasoned lasagna dish.'</em> You would laugh because you know that explosions create chaos, not organized, life-supporting order.<br><br><strong>The Logic:</strong> Physics tells us the universe began with a massive explosion (the Big Bang). Yet instead of total destruction, that explosion launched physical laws and constants balanced on a razor's edge—allowing stars to live, explode, and seed the cosmos <em>on time</em> so that stable solar systems could form.<br><br><strong>The Connection to God:</strong> Just as a recipe requires a chef, an ordered, chronologically synchronized universe implies a cosmic orchestrator who brought order out of potential chaos."
+            },
+            geosphere: {
+                title: "The Geosphere (The Prepared Nursery)",
+                icon: "mountain",
+                text: "<strong>The Analogy:</strong> Imagine building a nursery for a newborn baby. You don't just dump furniture in a room; you anchor heavy shelves to the walls so they won't tip over, you install a temperature regulator, and you set up a baby monitor before the baby ever arrives.<br><br><strong>The Logic:</strong> Every single protective and stabilizing feature is installed <i>before</i> the occupant needs it, proving intent, care, and foresight.<br><br><strong>The Connection to God:</strong> Earth’s interior mechanics—like plate tectonics recycling nutrients and the Earth-Moon system anchoring our axial tilt—act as structural stabilizers, and Earth's magnetic core activated right as early solar winds threatened the atmosphere. The nursery was fully prepared before life took its first breath."
+            },
+            hydrosphere: {
+                title: "The Hydrosphere (Custom Plumbing System)",
+                icon: "droplet",
+                text: "<strong>The Analogy:</strong> Imagine moving into a newly built house and discovering that the water pipes are filled with a magical liquid that expands when it freezes (so the pipes don't burst from the inside out), acts as a universal solvent, and can absorb massive amounts of heat.<br><br><strong>The Logic:</strong> You would instantly call the architect and say, <em>'Who engineered these pipes? This isn't normal plumbing behavior; this material was custom-designed for this specific house.'</em><br><br><strong>The Connection to God:</strong> Water defies standard physics because it was custom-engineered to be the lifeblood and circulatory system of our planet."
+            },
+            atmosphere: {
+                title: "The Atmosphere (Greenhouse Air-Lock)",
+                icon: "wind",
+                text: "<strong>The Analogy:</strong> Imagine walking into a newly built, state-of-the-art biosphere designed to house fragile exotic plants. The automated life-support systems—the oxygen scrubbers, the thermal regulators, and the UV-blocking shields—are already fully operational. The computerized vents stay shut while the interior is precisely calibrated, and then—at the exact second the delicate plants are placed inside—the valves open to flood the habitat with breathable, perfectly filtered air.<br><br><strong>The Logic:</strong> A precision-timed chemical and atmospheric transition in a closed, life-sustaining environment requires an expert engineer overseeing the controls from the start. It cannot happen safely through a random, unguided leak or a chaotic accident, especially within a compressed, finely balanced window of time.<br><br><strong>The Connection to God:</strong> The precise ratio of atmospheric oxygen, the immediate presence of the protective ozone layer, and the foundational geochemical cycles were intentionally front-loaded by the Creator. Just as the greenhouse vents are timed for the arrival of the plants, Earth’s life-sustaining shields were established simultaneously with life itself, pointing directly to an intelligent Designer who bypassed long ages to craft a ready-made habitat for humanity."
+            },
+            biosphere: {
+                title: "The Biosphere (Software & Information)",
+                icon: "cpu",
+                text: "<strong>The Analogy:</strong> Imagine examining the latest engineering marvel—a foldable smartphone. Pulling it off requires master engineers to fuse ultra-thin flexible glass, microscopic multi-gear hinge mechanisms, and millions of lines of complex operating system code to seamlessly transition between the different screens without distorting any visuals.<br><br><strong>The Logic:</strong> You would never look at a foldable smartphone and claim that wind and erosion randomly melted sand into microchips, organized metal into a folding hinge and the earth's natural electromagnetic charges randomly assembled all the electrical charges on the phone represented by the binary 1s and 0s that translated to the millions of lines of complex code to function properly. Precision engineering requires an intelligent designer.<br><br><strong>The Connection to God:</strong> Yet even this pinnacle of human technology pales infinitely when compared to DNA and the human body. Every single cell contains a biological 'library' written in a four-letter digital genetic alphabet that dictates proteins, repairs tissues, and self-replicates. If a foldable phone demands an intelligent creator, the living code of life points directly to an ultimate Master Mind."
+            },
+            reproduction: {
+                title: "Reproduction & Simultaneous Maturity",
+                icon: "users",
+                text: "<strong>The Analogy:</strong> Imagine walking into a brand-new, state-of-the-art zoo exhibit meant to save an endangered animal. The zookeepers don't walk into an empty cage and drop off a single baby cub, waiting millions of years for a mate to randomly evolve piece by piece.<br><br><strong>The Logic:</strong> For any animal population to survive past day one, you must introduce a fully grown, mature male and a fully grown, mature female at the exact same time, with all biological systems functional.<br><br><strong>The Connection to God:</strong> For creatures to propagate rather than die out instantly, an intelligent Creator introduced the male and female of species fully grown, fully mature, and fully equipped from the very first moment."
+            }
+        };
+
+        function showGodProof(key) {
+            const data = godProofData[key];
+            document.getElementById('infoModalTitle').innerText = data.title;
+            document.getElementById('infoModalText').innerHTML = data.text;
+            document.getElementById('infoModalIcon').innerHTML = `<i data-lucide="${data.icon}" class="text-amber-600 w-8 h-8"></i>`;
+            lucide.createIcons();
+            toggleModal('infoModal');
+        }
+
+        function showJesusProof(key) {
+            const data = jesusProofData[key];
+            document.getElementById('infoModalTitle').innerText = data.title;
+            document.getElementById('infoModalText').innerHTML = data.text;
+            document.getElementById('infoModalIcon').innerHTML = `<i data-lucide="${data.icon}" class="text-amber-600 w-8 h-8"></i>`;
+            lucide.createIcons();
+            toggleModal('infoModal');
+        }
 
         function showInfo(key) {
             const data = infoData[key];
